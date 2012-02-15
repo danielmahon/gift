@@ -1,5 +1,5 @@
 # Gift
-A basic Node.js wrapper for the Git CLI. The API is based on
+A simple Node.js wrapper for the Git CLI. The API is based on
 [Grit](https://github.com/mojombo/grit)
 
 # Installation
