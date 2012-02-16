@@ -63,6 +63,7 @@ module.exports = class Commit
     lines   = text.split "\n"
     while lines.length
       id   = _.last lines.shift().split(" ")
+      break if !id
       tree = _.last lines.shift().split(" ")
       
       parents = []
