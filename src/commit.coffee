@@ -17,6 +17,10 @@ module.exports = class Commit
         new Commit @repo, parent
   
   
+  toJSON: ->
+    {@id, @author, @authored_date, @committer, @committed_date, @message}
+  
+  
   # Public: Find the matching commits.
   # 
   # callback - Receives `(err, commits)`
