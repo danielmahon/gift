@@ -102,4 +102,4 @@ module.exports = class Commit
   # Returns [String name and email, Date]
   @actor: (line) ->
     [m, actor, epoch] = /^.+? (.*) (\d+) .*$/.exec line
-    return [Actor.from_string(actor), new Date(+epoch)]
+    return [Actor.from_string(actor), new Date(1000 * +epoch)]
