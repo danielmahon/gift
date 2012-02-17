@@ -62,14 +62,16 @@ module.exports = class Repo
   
   # Public: Get the difference between the trees.
   # 
-  # commitA  - A Commit.
-  # commitB  - A Commit.
+  # commitA  - A Commit or String commit id.
+  # commitB  - A Commit or String commit id.
   # paths    - A list of String paths to restrict the difference to (optional).
   # callback - A Function which receives `(err, diffs)`.
   # 
   diff: (commitA, commitB, paths, callback) ->
     [callback, paths] = [paths, callback] if !callback
     paths ?= []
+    commitA = commitA.id if _.isObject(commitA)
+    commitB = commitB.id if _.isObject(commitB)
     @git "diff", {}, _.flatten([commitA, commitB, "--", paths])
     , (err, stdout, stderr) =>
       return callback err if err
