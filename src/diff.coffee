@@ -7,6 +7,11 @@ module.exports = class Diff
     @a_blob = new Blob @repo, {id: a_blob} if a_blob
     @b_blob = new Blob @repo, {id: b_blob} if b_blob
   
+  
+  toJSON: ->
+    {@a_path, @b_path, @a_mode, @b_mode, @new_file
+    , @deleted_file, @diff, @renamed_file, @similarity_index}
+  
   # Public: Parse the Diffs from the command output.
   # 
   # text - String stdout of a `git diff` command.
