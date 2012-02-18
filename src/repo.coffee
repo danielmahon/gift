@@ -203,7 +203,7 @@ module.exports = class Repo
   # 
   commit: (message, options, callback) ->
     [options, callback] = [callback, options] if !callback
-    options = _.extend options, {m: message}
+    options = _.extend options, {m: "'#{message}'"}
     @git "commit", options, (err, stdout, stderr) ->
       callback err
   
