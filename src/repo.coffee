@@ -119,7 +119,7 @@ module.exports = class Repo
   # callback - Receives `(err, callback)`
   # 
   status: (callback) ->
-    return new Status(this, callback)
+    return Status(this, callback)
   
   
   # Public: Get the repository's tags.
@@ -224,3 +224,7 @@ module.exports = class Repo
   remove: (files, callback) ->
     files = [files] if _.isString files
     @git "rm", {}, files, callback
+  
+  # Public: Revert the given commit.
+  revert: (sha, callback) ->
+    @git "revert", {}, sha, callback
