@@ -195,6 +195,10 @@ Each file has the following properties:
 ### Actor#email
 `String`
 
+### Actor#hash
+`String` - The MD5 hash of the actor's email. Useful for displaying
+[Gravatar](http://en.gravatar.com/) avatars.
+
 
 ## Tree
 ### Tree#id
