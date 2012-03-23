@@ -28,13 +28,15 @@ S.Status = class Status
     @clean = true
     state  = null
     for line in text.split("\n")
-      @clean = false
       if line == BEGIN_STAGED
         state = "staged"
+        @clean = false
       else if line == BEGIN_UNSTAGED
         state = "unstaged"
+        @clean = false
       else if line == BEGIN_UNTRACKED
         state = "untracked"
+        @clean = false
       else if state && match = FILE.exec(line)
         file = match[2]
         data = switch state

@@ -22,9 +22,22 @@ GIT_STATUS = """
     #
     #       pickles.txt
   """
+GIT_STATUS_CLEAN = """
+    # On branch master
+    # nothing to commit (working directory clean)
+  """
 
 describe "Status", ->
   describe "()", ->
+    describe "when there are no changes", ->
+      repo   = fixtures.status
+      status = new Status.Status repo
+      status.parse GIT_STATUS_CLEAN
+      
+      it "is clean", ->
+        status.clean.should.be.true
+      
+    
     describe "when there are changes", ->
       repo   = fixtures.status
       status = new Status.Status repo

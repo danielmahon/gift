@@ -116,7 +116,7 @@ module.exports = class Repo
   
   # Public: Get the repository's status (`git status`).
   # 
-  # callback - Receives `(err, callback)`
+  # callback - Receives `(err, status)`
   # 
   status: (callback) ->
     return Status(this, callback)
