@@ -132,10 +132,13 @@ module.exports = class Repo
   # Public: Create a tag.
   # 
   # name     - String
+  # options  - An Object of command line arguments to pass to
+  #            `git tag` (optional).
   # callback - Receives `(err)`.
   # 
-  create_tag: (name, callback) ->
-    @git "tag", {a: name}, callback
+  create_tag: (name, options, callback) ->
+    [options, callback] = [callback, options] if !callback
+    @git "tag", options, [name], callback
   
   # Public: Delete the tag.
   # 
@@ -228,3 +231,19 @@ module.exports = class Repo
   # Public: Revert the given commit.
   revert: (sha, callback) ->
     @git "revert", {}, sha, callback
+  
+  
+  # Public: Sync the current branch with the remote.
+  # 
+  # callback - Receives `(err)`.
+  # 
+  sync: (callback) ->
+    @git "stash", {}, ["save"], (err) =>
+      return callback err if err
+      @git "pull", {}, branch, (err) =>
+        return callback err if err
+        @git "push", (err) =>
+          return callback err if err
+          @git "stash", {}, "pop", (err) =>
+            return callback err if err
+            return callback null
