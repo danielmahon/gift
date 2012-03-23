@@ -11,7 +11,10 @@ module.exports = S = (repo, callback) ->
 
 
 BEGIN_STAGED    = "# Changes to be committed:"
-BEGIN_UNSTAGED  = "# Changed but not updated:"
+BEGIN_UNSTAGED  = [
+  "# Changed but not updated:"
+  "# Changes not staged for commit:"
+]
 BEGIN_UNTRACKED = "# Untracked files:"
 FILE            = /^#\s+([^\s]+)[:]\s+(.+)$/
 TYPES =
@@ -31,7 +34,7 @@ S.Status = class Status
       if line == BEGIN_STAGED
         state = "staged"
         @clean = false
-      else if line == BEGIN_UNSTAGED
+      else if ~BEGIN_UNSTAGED.indexOf(line)
         state = "unstaged"
         @clean = false
       else if line == BEGIN_UNTRACKED

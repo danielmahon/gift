@@ -26,6 +26,17 @@ GIT_STATUS_CLEAN = """
     # On branch master
     # nothing to commit (working directory clean)
   """
+GIT_STATUS_NOT_CLEAN = """
+    # On branch master
+    # Changes not staged for commit:
+    #   (use "git add ..." to update what will be committed)
+    #   (use "git checkout -- ..." to discard changes in working directory)
+    #
+    #   modified:   lib/index.js
+    #   modified:   npm-shrinkwrap.json
+    #   modified:   package.json
+    #
+  """
 
 describe "Status", ->
   describe "()", ->
@@ -37,7 +48,13 @@ describe "Status", ->
       it "is clean", ->
         status.clean.should.be.true
       
-    
+    describe "when there are changes", ->
+      repo   = fixtures.status
+      status = new Status.Status repo
+      status.parse GIT_STATUS_NOT_CLEAN
+      it "is not clean", ->
+        status.clean.should.be.false
+
     describe "when there are changes", ->
       repo   = fixtures.status
       status = new Status.Status repo
