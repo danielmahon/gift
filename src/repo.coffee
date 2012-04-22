@@ -113,6 +113,15 @@ module.exports = class Repo
     , (err, stdout, stderr) ->
       callback err
   
+  # Public: `git merge <name>`.
+  # 
+  # name     - String name of the source
+  # callback - Receives `(err)`.
+  # 
+  remote_merge: (name, callback) ->
+    @git "erge", {}, name
+    , (err, stdout, stderr) ->
+      callback err
   
   # Public: Get the repository's status (`git status`).
   # 
