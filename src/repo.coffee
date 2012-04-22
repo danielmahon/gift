@@ -118,8 +118,8 @@ module.exports = class Repo
   # name     - String name of the source
   # callback - Receives `(err)`.
   # 
-  remote_merge: (name, callback) ->
-    @git "erge", {}, name
+  merge: (name, callback) ->
+    @git "merge", {}, name
     , (err, stdout, stderr) ->
       callback err
   
