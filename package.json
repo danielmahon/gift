@@ -1,6 +1,6 @@
 {
 	"name": "gift",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "a Git wrapper library",
 	"keywords": ["git"],
 	"homepage": "https://github.com/sentientwaffle/gift",
@@ -14,8 +14,6 @@
 	"main": "./lib/index",
 	"scripts": {
 		"test": "mocha"
-		,
-		"prepublish": "coffee -o lib -c src"
 	},
 	"repository": {
 		"type": "git",
